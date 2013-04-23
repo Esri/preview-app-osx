@@ -61,7 +61,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-A copy of the license is available in the repository's [license.txt]( https://raw.github.com/Esri/preview-app-osx/master/license.txt) file.
+A copy of the license is available in the repository's [license.txt]( https://raw.github.com/Esri/preview-app-osx/master/License.txt) file.
 
 [](Esri Tags: ArcGIS Runtime Preview Application)
 [](Esri Language: Objective-C)​
