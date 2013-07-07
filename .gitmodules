@@ -1,0 +1,3 @@
+[submodule "EAFKit"]
+	path = EAFKit
+	url = https://github.com/Esri/app-framework-demo-osx
