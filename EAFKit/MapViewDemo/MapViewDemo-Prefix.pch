@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'MapViewDemo' target in the 'MapViewDemo' project
-//
-
-#ifdef __OBJC__
-#import <Cocoa/Cocoa.h>
-#import <ArcGIS/ArcGIS.h>
-#endif
