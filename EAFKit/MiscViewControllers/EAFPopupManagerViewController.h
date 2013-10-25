@@ -18,7 +18,10 @@
 
 @interface EAFPopupManagerViewController : NSViewController
 -(BOOL)fetchPopupsForPoint:(AGSPoint*)point;
-
+-(void)showPopups:(NSArray*)popups;
+-(void)clearAllPopups;
+-(void)startEditingCurrentPopup;
+-(BOOL)isEditing;
 -(void)activate;
 -(void)deactivate;
 

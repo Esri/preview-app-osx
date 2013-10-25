@@ -27,7 +27,7 @@
 
 NSString *const EAFFindPlacesLayerName = @"Search Results";
 
-@interface EAFFindPlacesResultsViewController ()<NSTableViewDelegate, NSTableViewDataSource, AGSWebMapDelegate, AGSInfoTemplateDelegate>{
+@interface EAFFindPlacesResultsViewController ()<NSTableViewDelegate, NSTableViewDataSource, AGSWebMapDelegate, AGSLayerCalloutDelegate>{
     EAFStatusViewController *_statusVC;
     AGSPictureMarkerSymbol *_mainPMS;
     AGSSimpleMarkerSymbol *_circleSym;
@@ -51,6 +51,7 @@ NSString *const EAFFindPlacesLayerName = @"Search Results";
         //
         // create our place results graphics layer now so we can add it to the map as soon as possible
         self.placeResultsGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
+        self.placeResultsGraphicsLayer.calloutDelegate = self;
         self.placeResultsGraphicsLayer.name = EAFFindPlacesLayerName;
         [[[EAFAppContext sharedAppContext] mapView] addMapLayer:self.placeResultsGraphicsLayer];
         
@@ -111,9 +112,6 @@ NSString *const EAFFindPlacesLayerName = @"Search Results";
 
     NSInteger i = 1;
     for (AGSLocatorFindResult *result in _results){
-        
-        result.graphic.infoTemplateDelegate = self;
-        
         NSString *addressType = [result.graphic attributeAsStringForKey:@"Addr_Type"];
         if ([addressType isEqualToString:@"POI"]){
             [result.graphic setValue:result.name forKey:@"title"];
@@ -168,15 +166,6 @@ NSString *const EAFFindPlacesLayerName = @"Search Results";
     [_tableView reloadData];
 }
 
--(NSString *)titleForGraphic:(AGSGraphic *)graphic screenPoint:(CGPoint)screen mapPoint:(AGSPoint *)mapPoint{
-    return [graphic attributeAsStringForKey:@"title"];
-}
-
--(NSString *)detailForGraphic:(AGSGraphic *)graphic screenPoint:(CGPoint)screen mapPoint:(AGSPoint *)mapPoint{
-    return [graphic attributeAsStringForKey:@"detail"];
-}
-
-
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     if (row >= _results.count){
         return nil;
@@ -214,9 +203,9 @@ NSString *const EAFFindPlacesLayerName = @"Search Results";
 -(IBAction)resultSelected:(id)sender{
     self.selectedResult = [_results objectAtIndex:_tableView.selectedRow];
     AGSGraphic *g = self.selectedResult.graphic;
-    g.infoTemplateDelegate = self;
+    g.layer.calloutDelegate = self;
     
-    [[EAFAppContext sharedAppContext].mapView.callout showCalloutAtPoint:g.geometry.envelope.center forGraphic:g animated:YES];
+    [[EAFAppContext sharedAppContext].mapView.callout showCalloutAtPoint:g.geometry.envelope.center forFeature:g layer:g.layer animated:YES];
     [[EAFAppContext sharedAppContext].mapView centerAtPoint:g.geometry.envelope.center animated:YES];
     
     EAFSuppressClangPerformSelectorLeakWarning([_target performSelector:_action withObject:self]);
@@ -261,5 +250,12 @@ NSString *const EAFFindPlacesLayerName = @"Search Results";
     return cs;
 }
 
+#pragma mark AGSLayerCalloutDelegate
+
+-(BOOL)callout:(AGSCallout *)callout willShowForFeature:(id<AGSFeature>)feature layer:(AGSLayer<AGSHitTestable> *)layer mapPoint:(AGSPoint *)mapPoint {
+    callout.title = [(AGSGraphic*)feature attributeAsStringForKey:@"title"];
+    callout.detail = [(AGSGraphic*)feature attributeAsStringForKey:@"detail"];
+    return YES;
+}
 
 @end

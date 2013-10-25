@@ -64,8 +64,8 @@ double const kEAFMeasurementSegmentLengthThreshold = 1000000; // 1000 km
         
         _length = len;
         
-        _dmsStart = [[AGSGeometryEngine defaultGeometryEngine]degreesMinutesSecondsForPoint:_linearStart numDigits:2];
-        _dmsEnd = [[AGSGeometryEngine defaultGeometryEngine]degreesMinutesSecondsForPoint:_linearEnd numDigits:2];
+        _dmsEnd = [_linearStart degreesMinutesSecondsStringWithNumDigits:2];
+        _dmsStart = [_linearEnd degreesMinutesSecondsStringWithNumDigits:2];
     }
     return self;
 }

@@ -186,7 +186,7 @@ const NSInteger kMapComponentIndex = 3;
         [_breadCrumb removeItemAtIndex:i];
     }
     
-    _loginVC = [[EAFPortalLoginViewController alloc]initWithNibName:@"EAFPortalLoginViewController" bundle:nil];
+    _loginVC = [[EAFPortalLoginViewController alloc]init];
     _loginVC.target = self;
     _loginVC.action = @selector(portalLoginVCAction:);
 //    _loginVC.allowCancel = (_portal != nil);
@@ -272,6 +272,7 @@ const NSInteger kMapComponentIndex = 3;
         _mapVC = [[MapViewController alloc]init];
         [_mapVC eaf_addToContainer:_containerView];
         _mapVC.searchContainerView = _searchContainerView;
+        _mapVC.collectFeatureButton = _collectButton;
         _mapVC.delegate = self;
     }
     _breadCrumb.selectedIndex = [self mapComponentIndex];
@@ -294,7 +295,7 @@ const NSInteger kMapComponentIndex = 3;
     [_mapVC deactivate];
     
     if (!_galleryVC){
-        _galleryVC = [[EAFWebMapGalleryViewController alloc] init];
+        _galleryVC = [[EAFWebMapGalleryViewController alloc] initWithNibName:@"EAFWebMapGalleryViewController" bundle:nil];
         _galleryVC.delegate = self;
         [_galleryVC eaf_addToContainer:_containerView];
         _galleryVC.searchContainerView = _searchContainerView;

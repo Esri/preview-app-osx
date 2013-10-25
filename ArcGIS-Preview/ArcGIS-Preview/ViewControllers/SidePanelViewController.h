@@ -29,8 +29,11 @@
 -(void)activateBookmarksVC;
 -(void)activateMeasureVC;
 -(void)activateResultsVC;
+-(BOOL)isEditingPopup;
 
 -(void)fetchPopupsForPoint:(AGSPoint*)point;
+-(void)showPopup:(AGSPopup*)popup editing:(BOOL)startEditing;
+
 @end
 
 @protocol SidePanelViewControllerDelegate <NSObject>

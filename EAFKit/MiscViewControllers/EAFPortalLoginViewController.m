@@ -33,6 +33,7 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     id _eventMonitor;
 }
 @property (nonatomic, assign) BOOL allowAnonymousAccess;
+@property (nonatomic, assign) BOOL allowNonOrgLogins;
 @end
 
 @implementation EAFPortalLoginViewController
@@ -58,6 +59,12 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _allowCancel = YES;
+        //
+        // These flags can be different, but in the case where
+        // allowNonOrgLogins is NO, allowAnonymousAccess will not work
+        // (no matter if it's value is YES)
+        _allowAnonymousAccess = NO;
+        _allowNonOrgLogins = YES;
     }
     return self;
 }
@@ -66,7 +73,14 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     _allowAnonymousAccess = allowAnonymousAccess;
     //
     // this will set the ok button status based on
-    // username length and allowAnonymous flag
+    // username length and the allow flags
+    [self controlTextDidChange:nil];
+}
+
+-(void)setAllowNonOrgLogins:(BOOL)allowNonOrgLogins{
+    _allowNonOrgLogins = allowNonOrgLogins;
+    // this will set the ok button status based on
+    // username length and the allow flags flag
     [self controlTextDidChange:nil];
 }
 
@@ -84,6 +98,27 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
 
 
 -(void)awakeFromNib{
+    
+#ifdef DEBUG
+    //
+    // The following code to have a keystroke for toggling allowAnonymousAccess and allowNonOrgLogins
+    // This should be DEBUG only
+    EAFPortalLoginViewController *weakSelf = self;
+    _eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:^NSEvent *(NSEvent *incomingEvent) {
+        NSEvent *result = incomingEvent;
+        if ([incomingEvent type] == NSKeyDown) {
+            NSString *characters = [incomingEvent characters];
+            
+            // if the user presses SHIFT + CMD + A
+            if ([characters isEqualToString:@"a"] &&
+                ([incomingEvent modifierFlags] & NSShiftKeyMask && [incomingEvent modifierFlags] & NSCommandKeyMask)) {
+                weakSelf.allowAnonymousAccess = !weakSelf.allowAnonymousAccess;
+                weakSelf.allowNonOrgLogins = !weakSelf.allowNonOrgLogins;
+            }
+        }
+        return result;
+    }];    
+#endif
 
     _origStatusColor = self.statusTextField.textColor;
     
@@ -212,7 +247,7 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     
     self.usernameTextField.delegate = self;
     
-    [self.okButton setEnabled:self.allowAnonymousAccess];
+    [self.okButton setEnabled:self.allowAnonymousAccess && self.allowNonOrgLogins];
     
     if (_allowCancel){
         self.cancelButton.title = @"Cancel";
@@ -222,6 +257,8 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     }
     
     self.signInImageView.image = [NSImage imageNamed:@"sign-in450x222"];
+    
+    [self.usernameTextField becomeFirstResponder];
 }
 
 -(void)setAllowCancel:(BOOL)allowCancel{
@@ -237,7 +274,7 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
 }
 
 - (void)controlTextDidChange:(NSNotification *)obj{
-    BOOL enabled = (_usernameTextField.stringValue.length > 0) || self.allowAnonymousAccess;
+    BOOL enabled = (_usernameTextField.stringValue.length > 0) || (self.allowAnonymousAccess && self.allowNonOrgLogins);
     [self.okButton setEnabled:enabled];
 }
 
@@ -247,7 +284,7 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     
     AGSCredential *cred = nil;
     cred = [[AGSCredential alloc]initWithUser:EAFPortalLoginViewControllerDefaultUser password:EAFPortalLoginViewControllerDefaultPassword];
-    self.portal = [[AGSPortal alloc]initWithURL:[NSURL URLWithString:@"http://www.arcgis.com"] credential:cred];
+    self.portal = [[AGSPortal alloc]initWithURL:[NSURL URLWithString:@"https://www.arcgis.com"] credential:cred];
     self.portal.delegate = self;
     
     self.statusTextField.textColor = _origStatusColor;
@@ -276,7 +313,7 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
     }
     NSString *urlString = self.urlTextField.stringValue;
     if (!urlString.length){
-        urlString = @"http://www.arcgis.com";
+        urlString = @"https://www.arcgis.com";
     }
     self.portal = [[AGSPortal alloc]initWithURL:[NSURL URLWithString:urlString] credential:cred];
     self.portal.delegate = self;
@@ -301,8 +338,8 @@ NSString *const EAFPortalLoginViewControllerDefaultPassword = @"";
 
 -(void)portalDidLoad:(AGSPortal *)portal{
     //
-    // we want to limit this app to organizations only...unless anonymous access is enabled
-    if (!portal.portalInfo.organizationId && !self.allowAnonymousAccess) {
+    // we want to limit this app to organizations only...unless non-org access is enabled
+    if (!portal.portalInfo.organizationId && !self.allowNonOrgLogins) {
         // if not an org, fail with Invalid Credentials
         [self displayLoginFailureWithString:@"Invalid account. Account must be part of an organization."];
         [self enableButtons:YES];

@@ -23,7 +23,7 @@
 #import "NSColor+EAFAdditions.h"
 #import "NSViewController+EAFAdditions.h"
 
-@interface EAFBookmarksViewController () <NSTableViewDelegate, NSTableViewDataSource, AGSInfoTemplateDelegate>{
+@interface EAFBookmarksViewController () <NSTableViewDelegate, NSTableViewDataSource, AGSLayerCalloutDelegate>{
     NSArray *_bookmarks;
     AGSWebMapBookmark *_selectedBookmark;
     id __unsafe_unretained _target;
@@ -103,13 +103,14 @@
 }
 
 -(void)addBookmarkAsGraphic:(AGSWebMapBookmark*)bkmk sym:(AGSSymbol*)sym{
-    AGSGraphic *g = [AGSGraphic graphicWithGeometry:bkmk.extent.center symbol:sym attributes:nil infoTemplateDelegate:self];
+    AGSGraphic *g = [AGSGraphic graphicWithGeometry:bkmk.extent.center symbol:sym attributes:nil];
     [g setAttribute:bkmk.name forKey:@"name"];
-    NSString *locString = [[AGSGeometryEngine defaultGeometryEngine] degreesMinutesSecondsForPoint:bkmk.extent.center numDigits:2];
+    NSString *locString = [bkmk.extent.center degreesMinutesSecondsStringWithNumDigits:2];
     //        AGSPoint *wgs84Point = (AGSPoint*)[[AGSGeometryEngine defaultGeometryEngine] projectGeometry:g.geometry toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     //        NSString *locString = [NSString stringWithFormat:@"%.3f, %.3f", wgs84Point.x, wgs84Point.y];
     [g setAttribute:locString forKey:@"location"];
     [_bookmarksLayer addGraphic:g];
+    _bookmarksLayer.calloutDelegate = self;
 }
 
 -(void)addBookmarksAsGraphics{
@@ -185,18 +186,16 @@
     EAFSuppressClangPerformSelectorLeakWarning([self.target performSelector:self.action withObject:self]);
     
     [[EAFAppContext sharedAppContext].mapView zoomToEnvelope:self.selectedBookmark.extent animated:YES];
-    [[EAFAppContext sharedAppContext].mapView.callout showCalloutAtPoint:self.selectedBookmark.extent.center forGraphic:[_bookmarksLayer.graphics objectAtIndex:self.tableView.selectedRow] animated:YES];
+    AGSGraphic *graphic = [_bookmarksLayer.graphics objectAtIndex:self.tableView.selectedRow];
+    [[EAFAppContext sharedAppContext].mapView.callout showCalloutAtPoint:self.selectedBookmark.extent.center forFeature:graphic layer:graphic.layer animated:YES];
 }
 
-#pragma mark info template delegate
+#pragma mark AGSLayerCalloutDelegate
 
--(NSString *)titleForGraphic:(AGSGraphic *)graphic screenPoint:(CGPoint)screen mapPoint:(AGSPoint *)mapPoint{
-    return [graphic attributeAsStringForKey:@"name"];
+-(BOOL)callout:(AGSCallout *)callout willShowForFeature:(id<AGSFeature>)feature layer:(AGSLayer<AGSHitTestable> *)layer mapPoint:(AGSPoint *)mapPoint {
+    callout.title = [(AGSGraphic*)feature attributeAsStringForKey:@"name"];
+    callout.detail = [(AGSGraphic*)feature attributeAsStringForKey:@"location"];
+    return YES;
 }
-
--(NSString *)detailForGraphic:(AGSGraphic *)graphic screenPoint:(CGPoint)screen mapPoint:(AGSPoint *)mapPoint{
-    return [graphic attributeAsStringForKey:@"location"];
-}
-
 
 @end

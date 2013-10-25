@@ -69,8 +69,6 @@
     
     //
     // set the additional user agent info for this application based on app name and version number
-#warning ADD YOUR USER AGENT HERE
-//    [AGSRequest setAdditionalUserAgentInfo:<add your user agent here>];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification {

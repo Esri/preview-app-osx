@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C20A0BC180708510048F7A7 /* DataCollection48.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB9A5D3174E82C8009F2758 /* DataCollection48.png */; };
+		1C20A0BD180708510048F7A7 /* DataCollection48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB9A5D4174E82C8009F2758 /* DataCollection48@2x.png */; };
 		4B2A7F1316F973DD006FD6D9 /* EAFCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A7E3A16F973DD006FD6D9 /* EAFCollectionView.m */; };
 		4B2A7F1716F973DD006FD6D9 /* EAFCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A7E3C16F973DD006FD6D9 /* EAFCollectionViewItem.m */; };
 		4B2A7F1B16F973DD006FD6D9 /* EAFCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A7E3D16F973DD006FD6D9 /* EAFCollectionViewItem.xib */; };
@@ -147,7 +149,9 @@
 		88033B8316C5CDC400BC3E2B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 88033B2C16C5CBFD00BC3E2B /* Credits.rtf */; };
 		88033B8416C5CDC400BC3E2B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88033B3216C5CBFE00BC3E2B /* MainMenu.xib */; };
 		88033B8C16C5CE0400BC3E2B /* ArcGIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B8B16C5CE0400BC3E2B /* ArcGIS.framework */; };
-		882672FE16FE112C00E952F8 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 882672FD16FE112B00E952F8 /* ArcGIS.bundle */; };
+		8835742116E801C1009C92E9 /* sign-in450x222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8835741E16E801C1009C92E9 /* sign-in450x222.jpg */; };
+		8835742316E801C1009C92E9 /* sign-in450x222@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8835741F16E801C1009C92E9 /* sign-in450x222@2x.jpg */; };
+		886FF4B7181B09A100EDB8E9 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */; };
 		88F30FEF16C6039000D661BD /* SidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F30FEC16C6039000D661BD /* SidePanelViewController.m */; };
 		88F30FF116C6039000D661BD /* SidePanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F30FED16C6039000D661BD /* SidePanelViewController.xib */; };
 		88F311D816C6059100D661BD /* TocContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F311D516C6059100D661BD /* TocContainerViewController.m */; };
@@ -158,6 +162,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CB9A5D3174E82C8009F2758 /* DataCollection48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DataCollection48.png; sourceTree = "<group>"; };
+		1CB9A5D4174E82C8009F2758 /* DataCollection48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DataCollection48@2x.png"; sourceTree = "<group>"; };
 		4B2A7E3916F973DD006FD6D9 /* EAFCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAFCollectionView.h; sourceTree = "<group>"; };
 		4B2A7E3A16F973DD006FD6D9 /* EAFCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAFCollectionView.m; sourceTree = "<group>"; };
 		4B2A7E3B16F973DD006FD6D9 /* EAFCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAFCollectionViewItem.h; sourceTree = "<group>"; };
@@ -373,7 +379,9 @@
 		88033B6E16C5CDA000BC3E2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		88033B8816C5CDC400BC3E2B /* ArcGIS Preview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArcGIS Preview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88033B8B16C5CE0400BC3E2B /* ArcGIS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArcGIS.framework; path = ../../../../../../Users/ryan3374/Library/SDKs/ArcGIS/OSX/ArcGIS.framework; sourceTree = "<group>"; };
-		882672FD16FE112B00E952F8 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
+		8835741E16E801C1009C92E9 /* sign-in450x222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sign-in450x222.jpg"; sourceTree = "<group>"; };
+		8835741F16E801C1009C92E9 /* sign-in450x222@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sign-in450x222@2x.jpg"; sourceTree = "<group>"; };
+		886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
 		88F30FEB16C6039000D661BD /* SidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePanelViewController.h; sourceTree = "<group>"; };
 		88F30FEC16C6039000D661BD /* SidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanelViewController.m; sourceTree = "<group>"; };
 		88F30FED16C6039000D661BD /* SidePanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidePanelViewController.xib; sourceTree = "<group>"; };
@@ -490,6 +498,8 @@
 		4B2A7E6B16F973DD006FD6D9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1CB9A5D3174E82C8009F2758 /* DataCollection48.png */,
+				1CB9A5D4174E82C8009F2758 /* DataCollection48@2x.png */,
 				4B2A7E6C16F973DD006FD6D9 /* compass25x25.png */,
 				4B2A7E6D16F973DD006FD6D9 /* compass25x25@2x.png */,
 				4B2A7E6E16F973DD006FD6D9 /* default-banner1050x300.png */,
@@ -683,6 +693,8 @@
 		4B9D375316E7F01B009BC89F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8835741E16E801C1009C92E9 /* sign-in450x222.jpg */,
+				8835741F16E801C1009C92E9 /* sign-in450x222@2x.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -690,7 +702,7 @@
 		88033B0E16C5CBFD00BC3E2B = {
 			isa = PBXGroup;
 			children = (
-				882672FD16FE112B00E952F8 /* ArcGIS.bundle */,
+				886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */,
 				88033B2316C5CBFD00BC3E2B /* ArcGIS Preview */,
 				88033B1C16C5CBFD00BC3E2B /* Frameworks */,
 				88033B1A16C5CBFD00BC3E2B /* Products */,
@@ -782,9 +794,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		88033B7016C5CDC400BC3E2B /* ArcGIS-Preview-sdk */ = {
+		88033B7016C5CDC400BC3E2B /* ArcGIS-Preview */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88033B8516C5CDC400BC3E2B /* Build configuration list for PBXNativeTarget "ArcGIS-Preview-sdk" */;
+			buildConfigurationList = 88033B8516C5CDC400BC3E2B /* Build configuration list for PBXNativeTarget "ArcGIS-Preview" */;
 			buildPhases = (
 				88033B7316C5CDC400BC3E2B /* Sources */,
 				88033B7616C5CDC400BC3E2B /* Frameworks */,
@@ -794,7 +806,7 @@
 			);
 			dependencies = (
 			);
-			name = "ArcGIS-Preview-sdk";
+			name = "ArcGIS-Preview";
 			productName = EsriSampleApp;
 			productReference = 88033B8816C5CDC400BC3E2B /* ArcGIS Preview.app */;
 			productType = "com.apple.product-type.application";
@@ -820,7 +832,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88033B7016C5CDC400BC3E2B /* ArcGIS-Preview-sdk */,
+				88033B7016C5CDC400BC3E2B /* ArcGIS-Preview */,
 			);
 		};
 /* End PBXProject section */
@@ -836,6 +848,9 @@
 				88F30FF116C6039000D661BD /* SidePanelViewController.xib in Resources */,
 				88F311DA16C6059100D661BD /* TocContainerViewController.xib in Resources */,
 				88F311E516C607CF00D661BD /* MapViewController.xib in Resources */,
+				886FF4B7181B09A100EDB8E9 /* ArcGIS.bundle in Resources */,
+				8835742116E801C1009C92E9 /* sign-in450x222.jpg in Resources */,
+				8835742316E801C1009C92E9 /* sign-in450x222@2x.jpg in Resources */,
 				4B35363816EB168000F2C603 /* AboutPanel.xib in Resources */,
 				4B2A7F1B16F973DD006FD6D9 /* EAFCollectionViewItem.xib in Resources */,
 				4B2A7F2316F973DD006FD6D9 /* EAFFindWebMapsViewController.xib in Resources */,
@@ -888,16 +903,17 @@
 				4B2A808B16F973DD006FD6D9 /* EAFBookmarksViewController.xib in Resources */,
 				4B2A809716F973DD006FD6D9 /* EAFFindPlacesResultsViewController.xib in Resources */,
 				4B2A809F16F973DD006FD6D9 /* EAFFindPlacesViewController.xib in Resources */,
+				1C20A0BC180708510048F7A7 /* DataCollection48.png in Resources */,
 				4B2A80AF16F973DD006FD6D9 /* EAFLayerCopyrightViewController.xib in Resources */,
 				4B2A80B716F973DD006FD6D9 /* EAFMapCopyrightViewController.xib in Resources */,
 				4B2A80C316F973DD006FD6D9 /* EAFMeasureViewController.xib in Resources */,
 				4B2A80CF16F973DD006FD6D9 /* EAFPortalAccountViewController.xib in Resources */,
 				4B2A80D716F973DD006FD6D9 /* EAFPortalLoginViewController.xib in Resources */,
+				1C20A0BD180708510048F7A7 /* DataCollection48@2x.png in Resources */,
 				4B2A80DF16F973DD006FD6D9 /* EAFStatusViewController.xib in Resources */,
 				4B2A80E716F973DD006FD6D9 /* EAFWebMapLayerCredentialsViewController.xib in Resources */,
 				4B2A811B16F973DD006FD6D9 /* README in Resources */,
 				4B2A812F16F973DD006FD6D9 /* EAFTOCViewController.xib in Resources */,
-				882672FE16FE112C00E952F8 /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,7 +1063,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = $BUILD_ROOT;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -1073,7 +1088,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
-				SYMROOT = $BUILD_ROOT;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -1120,7 +1134,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88033B8516C5CDC400BC3E2B /* Build configuration list for PBXNativeTarget "ArcGIS-Preview-sdk" */ = {
+		88033B8516C5CDC400BC3E2B /* Build configuration list for PBXNativeTarget "ArcGIS-Preview" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88033B8616C5CDC400BC3E2B /* Debug */,

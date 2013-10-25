@@ -263,6 +263,10 @@ NSString *const EAFSidePanelContentViewWidthDefaultsKey = @"sidePanelContentView
     [self.sidebar selectButtonAtRow:4];
 }
 
+-(BOOL)isEditingPopup {
+    return [_popupMgrVC isEditing];
+}
+
 -(void)fetchPopupsForPoint:(AGSPoint *)point{
     
     if (![[EAFAppContext sharedAppContext].webMap hasPopupsDefined]){
@@ -275,6 +279,32 @@ NSString *const EAFSidePanelContentViewWidthDefaultsKey = @"sidePanelContentView
     BOOL fetching = [_popupMgrVC fetchPopupsForPoint:point];
     if (fetching){
         [self.sidebar selectButtonAtRow:5];
+    }
+}
+
+-(void)showPopup:(AGSPopup*)popup editing:(BOOL)startEditing {
+    
+    if (![[EAFAppContext sharedAppContext].webMap hasPopupsDefined]){
+        return;
+    }
+    
+    if (!popup){
+        return;
+    }
+    
+    //select new sidebar button here, so any deactivation can happen
+    //before the popup editing begins.  Especially important for
+    //the Measure view, which takes over the mapView's touchDelegate
+    [self.sidebar selectButtonAtRow:5];
+
+    if (!_popupMgrVC){
+        _popupMgrVC = [[EAFPopupManagerViewController alloc]init];
+    }
+    
+    [_popupMgrVC clearAllPopups];
+    [_popupMgrVC showPopups:[NSArray arrayWithObject:popup]];
+    if (startEditing) {
+        [_popupMgrVC startEditingCurrentPopup];
     }
 }
 

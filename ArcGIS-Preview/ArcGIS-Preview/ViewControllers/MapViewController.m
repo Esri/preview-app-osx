@@ -21,7 +21,7 @@
 #define EAFMinMapWidth 300
 
 
-@interface MapViewController () <AGSWebMapDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate, NSSplitViewDelegate, SidePanelViewControllerDelegate>{
+@interface MapViewController () <AGSWebMapDelegate, AGSMapViewTouchDelegate, NSSplitViewDelegate, SidePanelViewControllerDelegate, NSMenuDelegate>{
     AGSPortalItem *_portalItem;
     AGSWebMap *_webMap;
     SidePanelViewController *_sidePanelVC;
@@ -121,9 +121,30 @@
     [_findVC eaf_addToAndCenterInContainer:_searchContainerView];
 }
 
+-(void)setCollectFeatureButton:(NSPopUpButton *)collectFeatureButton{
+    _collectFeatureButton = collectFeatureButton;
+    [_collectFeatureButton setTarget:self];
+    [_collectFeatureButton setAction:@selector(didSelectFeatureType:)];
+    [[_collectFeatureButton menu] setDelegate:self];
+    [self showCollectFeatureButtonIfNecessary];
+    [self populateCollectFeatureButton];
+}
+
+-(NSArray *)editableFeatureLayers {
+    NSMutableArray *editableFeatureLayers = [NSMutableArray array];
+    for (AGSFeatureLayer *featureLayer in [_webMapFeatureLayers allObjects]) {
+        //make sure the feature layer is editable and visible.
+        //if not, don't display the feature types from that layer
+        if (featureLayer.canCreate && [self featureLayerIsVisible:featureLayer]) {
+            [editableFeatureLayers addObject:featureLayer];
+        }
+    }
+    
+    return [NSArray arrayWithArray:editableFeatureLayers];
+}
+
 -(void)activate{
     [_findVC.view setHidden:NO];
-    
     
     if (!_compassWindow){
         NSWindow *wnd = [NSApplication sharedApplication].mainWindow;
@@ -147,6 +168,8 @@
         // position the compass window
         [self parentWindowResized:self];
     }
+    
+    [_collectFeatureButton setHidden:[[self editableFeatureLayers] count] <= 0];
 }
 
 -(void)deactivate{
@@ -156,6 +179,7 @@
     [_compassWindow setReleasedWhenClosed:NO];
     [_compassWindow close];
     _compassWindow = nil;
+    [_collectFeatureButton setHidden:YES];
 }
 
 -(void)openWebMapPortalItem:(AGSPortalItem*)item{
@@ -183,6 +207,104 @@
 
 }
 
+-(void)didSelectFeatureType:(id)sender {
+    NSMenuItem *item = (NSMenuItem *)sender;
+//    NSLog(@"menu Item = %@", item.title);
+    
+    AGSFeatureTemplate *fTemplate = (AGSFeatureTemplate *)[item representedObject];
+    NSMenuItem *parentMenuItem = item.parentItem;
+    AGSFeatureLayer *fLayer = (AGSFeatureLayer *)[parentMenuItem representedObject];
+    AGSGraphic *newFeature = [fLayer featureWithTemplate:fTemplate];
+    
+    //add new graphic to layer before creating new popup
+    [fLayer addGraphic:newFeature];
+    
+    //Find the popup info associated with the selected feature layer
+    AGSPopupInfo *pi =[_webMap popupInfoForFeatureLayer:fLayer];
+    //if a specific one doesn't exist, create a default popup
+    if (!pi) {
+        pi = [AGSPopupInfo popupInfoForGraphic:newFeature];
+    }
+    
+    AGSPopup *popup = [[AGSPopup alloc] initWithGraphic:newFeature popupInfo:pi];
+    [_sidePanelVC showPopup:popup editing:YES];
+}
+
+-(BOOL)featureLayerIsVisible:(AGSFeatureLayer *)fl
+{
+    AGSMapView *mapView = _mapView;
+    //Check if it observes the minimum scale dependency
+    BOOL isVisibleInCurrentScale = ((fl.minScale == 0) ||            //either the layers min scale is 0
+                                    (mapView.mapScale <= fl.minScale));  //or the mapview's scale is less than or equal to the minScale
+    
+    //finally check it is observes the max scale dependency
+    isVisibleInCurrentScale = isVisibleInCurrentScale && ((fl.maxScale == 0) ||                //either the layers min scale is 0
+                                                          (mapView.mapScale >= fl.maxScale));  //or the mapview's scale is greater than or equal to the minScale
+    
+    return isVisibleInCurrentScale && fl.visible;
+}
+
+-(void)showCollectFeatureButtonIfNecessary {
+    //hide button if there are no visible feature layers to edit
+    NSArray *editableFeatureLayers = [self editableFeatureLayers];
+    [_collectFeatureButton setHidden:[editableFeatureLayers count] <= 0];
+}
+
+-(void)populateCollectFeatureButton{
+    NSMenuItem *firstItem = [[_collectFeatureButton menu] itemAtIndex:0];
+    [_collectFeatureButton removeAllItems];
+    [[_collectFeatureButton menu] addItem:firstItem];
+    
+    if ([_sidePanelVC isEditingPopup]) {
+        return;
+    }
+
+    NSArray *editableFeatureLayers = [self editableFeatureLayers];
+    for (AGSFeatureLayer *featureLayer in editableFeatureLayers)
+    {
+        if (![self featureLayerIsVisible:featureLayer]) {
+            //don't display not visible feature layers
+            continue;
+        }
+        [_collectFeatureButton addItemWithTitle:featureLayer.name];
+        NSMenuItem *lastItem = [_collectFeatureButton lastItem];
+        [lastItem setRepresentedObject:featureLayer];
+        NSMenu *subMenu = [[NSMenu alloc] init];
+        NSInteger nTypesCount = featureLayer.types.count;
+        if (nTypesCount > 0)
+        {
+            for (AGSFeatureType *ft in featureLayer.types){
+                for (AGSFeatureTemplate *fTemplate in ft.templates) {
+                    NSMenuItem *mItem = [[NSMenuItem alloc] initWithTitle:fTemplate.name action:@selector(didSelectFeatureType:) keyEquivalent:@""];
+                    [mItem setRepresentedObject:fTemplate];
+                    [mItem setTarget:self];
+                    [subMenu addItem:mItem];
+                }
+            }
+        }
+        else {
+            //we have no feature types, # of rows is the template count
+            for (AGSFeatureTemplate *fTemplate in featureLayer.templates) {
+                NSMenuItem *mItem = [[NSMenuItem alloc] initWithTitle:fTemplate.name action:@selector(didSelectFeatureType:) keyEquivalent:@""];
+                [mItem setRepresentedObject:fTemplate];
+                [mItem setTarget:self];
+                [subMenu addItem:mItem];
+            }
+        }
+        
+        if ([subMenu.itemArray count] > 0) {
+            //if we have sub items, add the submenu
+            [lastItem setSubmenu:subMenu];
+        }
+    }
+}
+
+#pragma menu item validation
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+    
+    [self populateCollectFeatureButton];
+}
 
 #pragma mark WebMap Delegate
 
@@ -207,20 +329,15 @@
         sr = lyr.spatialReference;
         NSLog(@"lyr sr: %@", lyr.spatialReference);
     }
-
-    
-    // if _sidePanelVC is not nil then we need to return because
-    // it wasn't this view controller that opened the map, could've
-    // been the basemaps vc
-    if (_sidePanelVC){
-        return;
-    }
     
     // cache a reference to fls
     NSMutableSet *webMapFLs = [NSMutableSet set];
     for (AGSLayer *l in mapView.mapLayers){
         if ([l isKindOfClass:[AGSFeatureLayer class]]){
-            
+            //
+            // we don't want the callout to be shown automatically for us,
+            // we will display it when we want it
+            [(AGSFeatureLayer*)l setAllowCallout:NO];
             [webMapFLs addObject:l];
         }
     }
@@ -229,11 +346,18 @@
     [EAFAppContext sharedAppContext].webMap = webMap;
     [EAFAppContext sharedAppContext].mapView = mapView;
     mapView.touchDelegate = self;
-    mapView.calloutDelegate = self;
     
-    _sidePanelVC = [[SidePanelViewController alloc]init];
-    _sidePanelVC.delegate = self;
-    [_sidePanelVC eaf_addToContainer:_leftContainer];
+    // if _sidePanelVC is not nil then we don't need to create it. This can occur
+    // when it wasn't this view controller that opened the map, but another view,
+    // for example the basemaps vc
+    if (!_sidePanelVC){
+        _sidePanelVC = [[SidePanelViewController alloc]init];
+        _sidePanelVC.delegate = self;
+        [_sidePanelVC eaf_addToContainer:_leftContainer];
+        
+        [self showCollectFeatureButtonIfNecessary];
+        [self populateCollectFeatureButton];
+    }
 }
 
 -(void)webMap:(AGSWebMap *)webMap
@@ -353,18 +477,6 @@ didFailToLoadLayer:(AGSWebMapLayerInfo *)layerInfo
     }
     
     [_sidePanelVC fetchPopupsForPoint:mappoint];
-}
-
-#pragma mark mapview callout delegate
-
--(BOOL)mapView:(AGSMapView *)mapView shouldShowCalloutForGraphic:(AGSGraphic *)graphic{
-    
-    if ([_webMapFeatureLayers containsObject:graphic.layer]){
-        return NO;
-    }
-    else{
-        return YES;
-    }
 }
 
 #pragma mark -

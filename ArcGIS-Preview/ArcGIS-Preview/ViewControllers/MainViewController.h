@@ -30,6 +30,8 @@
 
 @property (weak) IBOutlet NSView *lineView;
 
+@property (weak) IBOutlet NSPopUpButton *collectButton;
+
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
 @property (weak) IBOutlet NSMenuItem *signInOutMenuItem;
 - (IBAction)signInOutMenuItemAction:(id)sender;

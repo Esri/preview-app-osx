@@ -119,7 +119,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
         _activated = NO;
         
 //        NSMutableSet *exclude = [NSMutableSet setWithSet:[EAFAppContext sharedAppContext].mapContentsTree.excludeList];
-//        [exclude addObject	:EAFMeasureLayerName];
+//        [exclude addObject:EAFMeasureLayerName];
 //        [EAFAppContext sharedAppContext].mapContentsTree.excludeList = exclude;
     }
     return self;
@@ -202,7 +202,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
     [[EAFAppContext sharedAppContext] popupUndoManager];
 }
 
--(void)sketchChanged:(id)sender{
+-(void)sketchChanged:(NSNotification *)notification{
     
     double len = 0;
     double area = 0;
@@ -251,7 +251,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
         
         if (row == 0){
             AGSPoint *p = [_poly pointOnPath:0 atIndex:0];
-            return [[AGSGeometryEngine defaultGeometryEngine] degreesMinutesSecondsForPoint:p numDigits:2];
+            return [p degreesMinutesSecondsStringWithNumDigits:2];
         }
         else{
             EAFLineSegment *seg = [_segments objectAtIndex:row-1];
@@ -288,30 +288,30 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
 
 #pragma mark AGSMapViewTouchDelegate
 
--(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
-    [_sgl mapView:mapView didClickAtPoint:screen mapPoint:mappoint graphics:graphics];
+-(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
+    [_sgl mapView:mapView didClickAtPoint:screen mapPoint:mappoint features:features];
 }
 
 -(void)mapView:(AGSMapView *)mapView didMoveMouseToPoint:(CGPoint)screen mapPoint:(AGSPoint*)mappoint{
 //    NSLog(@"mouse moved: %@", mappoint);
-    self.currentMousePointTextField.stringValue = [[AGSGeometryEngine defaultGeometryEngine]degreesMinutesSecondsForPoint:mappoint numDigits:2];
+    self.currentMousePointTextField.stringValue = [mappoint degreesMinutesSecondsStringWithNumDigits:2];
 }
 
--(void)mapView:(AGSMapView *)mapView didTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
-    [_sgl mapView:mapView didTapAndHoldAtPoint:screen mapPoint:mappoint graphics:graphics];
+-(void)mapView:(AGSMapView *)mapView didTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
+    [_sgl mapView:mapView didTapAndHoldAtPoint:screen mapPoint:mappoint features:features];
 }
 
--(void)mapView:(AGSMapView *)mapView didEndTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
-    [_sgl mapView:mapView didEndTapAndHoldAtPoint:screen mapPoint:mappoint graphics:graphics];
-}
-
--(BOOL)mapView:(AGSMapView *)mapView didMouseDownAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
-    return [_sgl mapView:mapView didMouseDownAtPoint:screen mapPoint:mappoint graphics:graphics];
+-(void)mapView:(AGSMapView *)mapView didEndTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
+    [_sgl mapView:mapView didEndTapAndHoldAtPoint:screen mapPoint:mappoint features:features];
 }
 
 -(void)mapView:(AGSMapView *)mapView didMouseDragToPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint{
-    self.currentMousePointTextField.stringValue = [[AGSGeometryEngine defaultGeometryEngine]degreesMinutesSecondsForPoint:mappoint numDigits:2];
+    self.currentMousePointTextField.stringValue = [mappoint degreesMinutesSecondsStringWithNumDigits:2];
     [_sgl mapView:mapView didMouseDragToPoint:screen mapPoint:mappoint];
+}
+
+-(BOOL)mapView:(AGSMapView *)mapView didMouseDownAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
+    return [_sgl mapView:mapView didMouseDownAtPoint:screen mapPoint:mappoint features:features];
 }
 
 -(void)mapView:(AGSMapView *)mapView didMouseUpAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint{

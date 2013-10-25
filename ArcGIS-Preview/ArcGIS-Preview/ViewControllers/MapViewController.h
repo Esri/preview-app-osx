@@ -22,6 +22,7 @@
 @interface MapViewController : NSViewController
 
 @property (nonatomic, strong) NSView *searchContainerView;
+@property (nonatomic, strong) NSPopUpButton *collectFeatureButton;
 @property (nonatomic, weak) id<MapViewControllerDelegate> delegate;
 @property (nonatomic, strong) EAFFindPlacesViewController *findVC;
 

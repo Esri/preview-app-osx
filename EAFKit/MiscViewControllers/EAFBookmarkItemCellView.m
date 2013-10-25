@@ -28,7 +28,7 @@
         return;
     }
     self.titleTextField.stringValue = _bookmark.name;
-    self.locationTextField.stringValue = [[AGSGeometryEngine defaultGeometryEngine] degreesMinutesSecondsForPoint:_bookmark.extent.center numDigits:2];
+    self.locationTextField.stringValue = [_bookmark.extent.center degreesMinutesSecondsStringWithNumDigits:2];
     self.thumbImageView.image = [NSImage imageNamed:@"pin-bookmark21x34"];
     
     if ([[EAFAppContext sharedAppContext].userBookmarks containsObject:_bookmark]){

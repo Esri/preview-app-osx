@@ -83,9 +83,9 @@
 -(void)setTree:(AGSMapContentsTree *)tree
 {
     if (_tree){
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:AGSMapContentsDidChangeNotification
-                                                  object:_tree];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:AGSMapContentsDidChangeNotification
+                                                      object:_tree];
     }
     
     _tree = tree;

@@ -536,7 +536,7 @@ typedef enum {
         [self.multiGalleryContainerView addConstraints:self.multiGalleryFolderListConstraints];
     }
     
-    self.fwmvc = [[EAFFindWebMapsViewController alloc] init];
+    self.fwmvc = [[EAFFindWebMapsViewController alloc] initWithNibName:@"EAFFindWebMapsViewController" bundle:nil];
     self.fwmvc.delegate = self;
 }
 
