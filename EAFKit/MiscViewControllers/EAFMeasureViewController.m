@@ -251,7 +251,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
         
         if (row == 0){
             AGSPoint *p = [_poly pointOnPath:0 atIndex:0];
-            return [p degreesMinutesSecondsStringWithNumDigits:2];
+            return [AGSGeometryEngine eaf_DMSForPoint:p];
         }
         else{
             EAFLineSegment *seg = [_segments objectAtIndex:row-1];
@@ -294,7 +294,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
 
 -(void)mapView:(AGSMapView *)mapView didMoveMouseToPoint:(CGPoint)screen mapPoint:(AGSPoint*)mappoint{
 //    NSLog(@"mouse moved: %@", mappoint);
-    self.currentMousePointTextField.stringValue = [mappoint degreesMinutesSecondsStringWithNumDigits:2];
+    self.currentMousePointTextField.stringValue = [AGSGeometryEngine eaf_DMSForPoint:mappoint];
 }
 
 -(void)mapView:(AGSMapView *)mapView didTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
@@ -306,7 +306,7 @@ NSString *const EAFMeasureLayerName = @"Measure Layer";
 }
 
 -(void)mapView:(AGSMapView *)mapView didMouseDragToPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint{
-    self.currentMousePointTextField.stringValue = [mappoint degreesMinutesSecondsStringWithNumDigits:2];
+    self.currentMousePointTextField.stringValue = [AGSGeometryEngine eaf_DMSForPoint:mappoint];
     [_sgl mapView:mapView didMouseDragToPoint:screen mapPoint:mappoint];
 }
 

@@ -136,19 +136,9 @@
 		4B35363816EB168000F2C603 /* AboutPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B35363516EB168000F2C603 /* AboutPanel.xib */; };
 		88033B7416C5CDC400BC3E2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88033B2916C5CBFD00BC3E2B /* main.m */; };
 		88033B7516C5CDC400BC3E2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88033B3016C5CBFD00BC3E2B /* AppDelegate.m */; };
-		88033B7716C5CDC400BC3E2B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B6E16C5CDA000BC3E2B /* QuartzCore.framework */; };
-		88033B7816C5CDC400BC3E2B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B6C16C5CD9B00BC3E2B /* CoreVideo.framework */; };
-		88033B7A16C5CDC400BC3E2B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5916C5CCE300BC3E2B /* CoreLocation.framework */; };
-		88033B7B16C5CDC400BC3E2B /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5A16C5CCE300BC3E2B /* libc++.dylib */; };
-		88033B7C16C5CDC400BC3E2B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5B16C5CCE300BC3E2B /* OpenGL.framework */; };
-		88033B7D16C5CDC400BC3E2B /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5C16C5CCE300BC3E2B /* QTKit.framework */; };
-		88033B7E16C5CDC400BC3E2B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5D16C5CCE300BC3E2B /* Security.framework */; };
-		88033B7F16C5CDC400BC3E2B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B5E16C5CCE300BC3E2B /* WebKit.framework */; };
-		88033B8016C5CDC400BC3E2B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B1D16C5CBFD00BC3E2B /* Cocoa.framework */; };
 		88033B8216C5CDC400BC3E2B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88033B2616C5CBFD00BC3E2B /* InfoPlist.strings */; };
 		88033B8316C5CDC400BC3E2B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 88033B2C16C5CBFD00BC3E2B /* Credits.rtf */; };
 		88033B8416C5CDC400BC3E2B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88033B3216C5CBFE00BC3E2B /* MainMenu.xib */; };
-		88033B8C16C5CE0400BC3E2B /* ArcGIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88033B8B16C5CE0400BC3E2B /* ArcGIS.framework */; };
 		8835742116E801C1009C92E9 /* sign-in450x222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8835741E16E801C1009C92E9 /* sign-in450x222.jpg */; };
 		8835742316E801C1009C92E9 /* sign-in450x222@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8835741F16E801C1009C92E9 /* sign-in450x222@2x.jpg */; };
 		886FF4B7181B09A100EDB8E9 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */; };
@@ -357,10 +347,6 @@
 		4B2A7F1016F973DD006FD6D9 /* EAFTOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAFTOCViewController.m; sourceTree = "<group>"; };
 		4B2A7F1116F973DD006FD6D9 /* EAFTOCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EAFTOCViewController.xib; sourceTree = "<group>"; };
 		4B35363616EB168000F2C603 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutPanel.xib; sourceTree = "<group>"; };
-		88033B1D16C5CBFD00BC3E2B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		88033B2016C5CBFD00BC3E2B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		88033B2116C5CBFD00BC3E2B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		88033B2216C5CBFD00BC3E2B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88033B2516C5CBFD00BC3E2B /* ArcGIS-Preview-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ArcGIS-Preview-Info.plist"; sourceTree = "<group>"; };
 		88033B2716C5CBFD00BC3E2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88033B2916C5CBFD00BC3E2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -369,19 +355,13 @@
 		88033B2F16C5CBFD00BC3E2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88033B3016C5CBFD00BC3E2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		88033B3316C5CBFE00BC3E2B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		88033B5916C5CCE300BC3E2B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		88033B5A16C5CCE300BC3E2B /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		88033B5B16C5CCE300BC3E2B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		88033B5C16C5CCE300BC3E2B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
-		88033B5D16C5CCE300BC3E2B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		88033B5E16C5CCE300BC3E2B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		88033B6C16C5CD9B00BC3E2B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		88033B6E16C5CDA000BC3E2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		88033B8816C5CDC400BC3E2B /* ArcGIS Preview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArcGIS Preview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		88033B8B16C5CE0400BC3E2B /* ArcGIS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArcGIS.framework; path = ../../../../../../Users/ryan3374/Library/SDKs/ArcGIS/OSX/ArcGIS.framework; sourceTree = "<group>"; };
+		88033B8816C5CDC400BC3E2B /* ArcGIS-Preview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArcGIS-Preview.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835741E16E801C1009C92E9 /* sign-in450x222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sign-in450x222.jpg"; sourceTree = "<group>"; };
 		8835741F16E801C1009C92E9 /* sign-in450x222@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sign-in450x222@2x.jpg"; sourceTree = "<group>"; };
-		886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
+		886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ./Library/SDKs/ArcGIS/OSX/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = HOME; };
+		88C6D3A01914340B004E77C4 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		88C6D3A11914340B004E77C4 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		88C6D3A21914340B004E77C4 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		88F30FEB16C6039000D661BD /* SidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePanelViewController.h; sourceTree = "<group>"; };
 		88F30FEC16C6039000D661BD /* SidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanelViewController.m; sourceTree = "<group>"; };
 		88F30FED16C6039000D661BD /* SidePanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidePanelViewController.xib; sourceTree = "<group>"; };
@@ -400,16 +380,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88033B7716C5CDC400BC3E2B /* QuartzCore.framework in Frameworks */,
-				88033B7816C5CDC400BC3E2B /* CoreVideo.framework in Frameworks */,
-				88033B7A16C5CDC400BC3E2B /* CoreLocation.framework in Frameworks */,
-				88033B7B16C5CDC400BC3E2B /* libc++.dylib in Frameworks */,
-				88033B7C16C5CDC400BC3E2B /* OpenGL.framework in Frameworks */,
-				88033B7D16C5CDC400BC3E2B /* QTKit.framework in Frameworks */,
-				88033B7E16C5CDC400BC3E2B /* Security.framework in Frameworks */,
-				88033B7F16C5CDC400BC3E2B /* WebKit.framework in Frameworks */,
-				88033B8016C5CDC400BC3E2B /* Cocoa.framework in Frameworks */,
-				88033B8C16C5CE0400BC3E2B /* ArcGIS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +672,7 @@
 		88033B0E16C5CBFD00BC3E2B = {
 			isa = PBXGroup;
 			children = (
+				88C6D39F191433D1004E77C4 /* BuildConfiguration */,
 				886FF4B6181B09A100EDB8E9 /* ArcGIS.bundle */,
 				88033B2316C5CBFD00BC3E2B /* ArcGIS Preview */,
 				88033B1C16C5CBFD00BC3E2B /* Frameworks */,
@@ -712,7 +683,7 @@
 		88033B1A16C5CBFD00BC3E2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88033B8816C5CDC400BC3E2B /* ArcGIS Preview.app */,
+				88033B8816C5CDC400BC3E2B /* ArcGIS-Preview.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -720,29 +691,8 @@
 		88033B1C16C5CBFD00BC3E2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88033B8B16C5CE0400BC3E2B /* ArcGIS.framework */,
-				88033B6E16C5CDA000BC3E2B /* QuartzCore.framework */,
-				88033B6C16C5CD9B00BC3E2B /* CoreVideo.framework */,
-				88033B5916C5CCE300BC3E2B /* CoreLocation.framework */,
-				88033B5A16C5CCE300BC3E2B /* libc++.dylib */,
-				88033B5B16C5CCE300BC3E2B /* OpenGL.framework */,
-				88033B5C16C5CCE300BC3E2B /* QTKit.framework */,
-				88033B5D16C5CCE300BC3E2B /* Security.framework */,
-				88033B5E16C5CCE300BC3E2B /* WebKit.framework */,
-				88033B1D16C5CBFD00BC3E2B /* Cocoa.framework */,
-				88033B1F16C5CBFD00BC3E2B /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		88033B1F16C5CBFD00BC3E2B /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				88033B2016C5CBFD00BC3E2B /* AppKit.framework */,
-				88033B2116C5CBFD00BC3E2B /* CoreData.framework */,
-				88033B2216C5CBFD00BC3E2B /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		88033B2316C5CBFD00BC3E2B /* ArcGIS Preview */ = {
@@ -771,6 +721,16 @@
 				88033B2C16C5CBFD00BC3E2B /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88C6D39F191433D1004E77C4 /* BuildConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				88C6D3A01914340B004E77C4 /* Debug.xcconfig */,
+				88C6D3A11914340B004E77C4 /* Release.xcconfig */,
+				88C6D3A21914340B004E77C4 /* Shared.xcconfig */,
+			);
+			name = BuildConfiguration;
 			sourceTree = "<group>";
 		};
 		88F30FEA16C6039000D661BD /* ViewControllers */ = {
@@ -808,7 +768,7 @@
 			);
 			name = "ArcGIS-Preview";
 			productName = EsriSampleApp;
-			productReference = 88033B8816C5CDC400BC3E2B /* ArcGIS Preview.app */;
+			productReference = 88033B8816C5CDC400BC3E2B /* ArcGIS-Preview.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -817,7 +777,7 @@
 		88033B1016C5CBFD00BC3E2B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Esri;
 			};
 			buildConfigurationList = 88033B1316C5CBFD00BC3E2B /* Build configuration list for PBXProject "ArcGIS-Preview" */;
@@ -1038,87 +998,27 @@
 		88033B3516C5CBFE00BC3E2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		88033B3616C5CBFE00BC3E2B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
 		88033B8616C5CDC400BC3E2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88C6D3A01914340B004E77C4 /* Debug.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "~/Library/SDKs/ArcGIS/OSX/";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ArcGIS-Preview/ArcGIS-Preview-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../../OSX/Framework/**";
-				INFOPLIST_FILE = "ArcGIS-Preview/ArcGIS-Preview-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "ArcGIS Preview";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		88033B8716C5CDC400BC3E2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88C6D3A11914340B004E77C4 /* Release.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "~/Library/SDKs/ArcGIS/OSX/";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ArcGIS-Preview/ArcGIS-Preview-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../../OSX/Framework/**";
-				INFOPLIST_FILE = "ArcGIS-Preview/ArcGIS-Preview-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "ArcGIS Preview";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};

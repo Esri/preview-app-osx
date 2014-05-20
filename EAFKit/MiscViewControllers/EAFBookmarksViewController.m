@@ -20,6 +20,7 @@
 #import "EAFStatusViewController.h"
 #import "EAFBookmarkItemCellView.h"
 #import "EAFTableRowView.h"
+#import "AGSGeometryEngine+EAFAdditions.h"
 #import "NSColor+EAFAdditions.h"
 #import "NSViewController+EAFAdditions.h"
 
@@ -105,7 +106,7 @@
 -(void)addBookmarkAsGraphic:(AGSWebMapBookmark*)bkmk sym:(AGSSymbol*)sym{
     AGSGraphic *g = [AGSGraphic graphicWithGeometry:bkmk.extent.center symbol:sym attributes:nil];
     [g setAttribute:bkmk.name forKey:@"name"];
-    NSString *locString = [bkmk.extent.center degreesMinutesSecondsStringWithNumDigits:2];
+    NSString *locString = [AGSGeometryEngine eaf_DMSForPoint:bkmk.extent.center];
     //        AGSPoint *wgs84Point = (AGSPoint*)[[AGSGeometryEngine defaultGeometryEngine] projectGeometry:g.geometry toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     //        NSString *locString = [NSString stringWithFormat:@"%.3f, %.3f", wgs84Point.x, wgs84Point.y];
     [g setAttribute:locString forKey:@"location"];

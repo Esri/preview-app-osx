@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner">
+        <customObject id="-2" userLabel="File's Owner" customClass="AppDelegate">
             <connections>
+                <outlet property="aboutWindow" destination="1" id="fBv-FX-4eW"/>
                 <outlet property="view" destination="2" id="128"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" animationBehavior="default" id="1">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="403" y="193" width="645" height="485"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="645" height="485"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,17 +34,17 @@
                         <rect key="frame" x="20" y="49" width="605" height="255"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="fiK-l9-L9H">
-                            <rect key="frame" x="1" y="1" width="603" height="253"/>
+                            <rect key="frame" x="1" y="1" width="588" height="253"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView editable="NO" importsGraphics="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" id="19">
-                                    <rect key="frame" x="0.0" y="0.0" width="590" height="253"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="575" height="253"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <size key="minSize" width="590" height="252"/>
+                                    <size key="minSize" width="588" height="253"/>
                                     <size key="maxSize" width="605" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="590" height="252"/>
+                                    <size key="minSize" width="588" height="253"/>
                                     <size key="maxSize" width="605" height="10000000"/>
                                     <connections>
                                         <binding destination="-2" name="attributedString" keyPath="self.credits" id="253">
@@ -61,12 +62,12 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="283"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="284"/>
                         </constraints>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="20">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="20">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" id="21">
-                            <rect key="frame" x="588" y="1" width="16" height="253"/>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="21">
+                            <rect key="frame" x="589" y="1" width="15" height="253"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -90,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="58"/>
-                            <constraint firstAttribute="width" constant="221" id="138"/>
+                            <constraint firstAttribute="width" constant="223" id="138"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version 10.1.0 (380)" id="44">
                             <font key="font" metaFont="smallSystem"/>
@@ -106,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="83"/>
-                            <constraint firstAttribute="width" constant="221" id="84"/>
+                            <constraint firstAttribute="width" constant="223" id="84"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright (c) 2013 Esri. All rights reserved." id="78">
                             <font key="font" size="10" name="LucidaGrande"/>
@@ -124,7 +125,7 @@
                     <constraint firstAttribute="bottom" secondItem="77" secondAttribute="bottom" constant="15" id="230"/>
                     <constraint firstAttribute="bottom" secondItem="18" secondAttribute="bottom" constant="49" id="233"/>
                     <constraint firstItem="18" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="258"/>
-                    <constraint firstItem="77" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="262"/>
+                    <constraint firstItem="77" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="19" id="262"/>
                     <constraint firstAttribute="trailing" secondItem="18" secondAttribute="trailing" constant="20" symbolic="YES" id="264"/>
                     <constraint firstItem="28" firstAttribute="top" secondItem="2" secondAttribute="top" constant="122" id="277"/>
                     <constraint firstItem="28" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="279"/>

@@ -179,4 +179,9 @@ double const kEAFMeasurementAreaThreshold = 1000000000; // 1000 sq km
     return [NSString stringWithFormat:@"%.2f %@", area, AGSAreaUnitsAbbreviatedString(units)];
 }
 
++(NSString*)eaf_DMSForPoint:(AGSPoint*)point {
+    AGSMutablePoint *mp = [point mutableCopy];
+    [mp normalize];
+    return [mp degreesMinutesSecondsStringWithNumDigits:2];
+}
 @end

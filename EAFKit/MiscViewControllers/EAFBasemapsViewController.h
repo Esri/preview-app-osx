@@ -28,6 +28,4 @@
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
 
--(IBAction)basemapSelected:(id)sender;
-
 @end
