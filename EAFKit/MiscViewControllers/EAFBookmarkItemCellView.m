@@ -16,6 +16,7 @@
 
 #import "EAFBookmarkItemCellView.h"
 #import "EAFAppContext.h"
+#import "AGSGeometryEngine+EAFAdditions.h"
 
 @implementation EAFBookmarkItemCellView
 
@@ -28,7 +29,7 @@
         return;
     }
     self.titleTextField.stringValue = _bookmark.name;
-    self.locationTextField.stringValue = [_bookmark.extent.center degreesMinutesSecondsStringWithNumDigits:2];
+    self.locationTextField.stringValue = [AGSGeometryEngine eaf_DMSForPoint:_bookmark.extent.center];
     self.thumbImageView.image = [NSImage imageNamed:@"pin-bookmark21x34"];
     
     if ([[EAFAppContext sharedAppContext].userBookmarks containsObject:_bookmark]){

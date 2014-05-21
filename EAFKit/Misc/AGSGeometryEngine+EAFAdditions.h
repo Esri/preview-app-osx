@@ -45,4 +45,8 @@
  */
 +(NSString*)eaf_displayStringForArea:(double)area inAreaUnits:(AGSAreaUnits)units;
 
+/** Returns the DMS string for a point, normalizing the point if necessary
+ before performing the calculation.
+ */
++(NSString*)eaf_DMSForPoint:(AGSPoint*)point;
 @end

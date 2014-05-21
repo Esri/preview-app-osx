@@ -30,8 +30,9 @@
 
 - (IBAction)showAboutPanel:(id)sender
 {
-    if ( !self.aboutWindow )
-        [NSBundle loadNibNamed:@"AboutPanel" owner:self];
+    if ( !self.aboutWindow ) {
+        [[NSBundle mainBundle] loadNibNamed:@"AboutPanel" owner:self topLevelObjects:nil];
+    }
     
     [self.aboutWindow makeKeyAndOrderFront:self.aboutWindow];
 }
@@ -40,6 +41,12 @@
 {
     // Insert code here to initialize your application
     
+#warning SET YOUR CLIENT ID HERE
+    NSError *error = nil;
+    if (![AGSRuntimeEnvironment setClientID:@"" error:&error]) {
+        NSLog(@"setClientId error = %@", error.localizedDescription);
+    }
+
     //
     // set our window's delegate so we know when it is closed.
     [self.window setDelegate:self];

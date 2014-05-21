@@ -32,6 +32,7 @@
     AGSPoint *_center;
     double _res;
     double _angle;
+    NSMutableDictionary *_itemsToBasemaps;
 }
 
 @property (nonatomic, strong) AGSWebMap *selectedBasemapWebmap;
@@ -118,6 +119,8 @@
 
     NSOperation *op = [note.userInfo valueForKey:@"operation"];
     if (op == _basemapItemsQueryOp){
+        _itemsToBasemaps = [NSMutableDictionary dictionary];
+        
         AGSPortalQueryResultSet *resultSet = [note.userInfo valueForKey:@"resultSet"];
         _basemaps = resultSet.results;
         
@@ -183,68 +186,35 @@
     return trv;
 }
 
--(IBAction)basemapSelected:(id)sender{
+-(void)tableViewSelectionDidChange:(NSNotification *)notification{
+    
     self.selectedBasemap = [_basemaps objectAtIndex:_tableView.selectedRow];
-    self.selectedBasemapWebmap = [AGSWebMap webMapWithPortalItem:self.selectedBasemap];
-    self.selectedBasemapWebmap.delegate = self;
+    
+    self.selectedBasemapWebmap = _itemsToBasemaps[self.selectedBasemap.itemId];
+    if (self.selectedBasemapWebmap){
+        [self switchToSelectedBasemap];
+    }
+    else{
+        self.selectedBasemapWebmap = [AGSWebMap webMapWithPortalItem:self.selectedBasemap];
+        self.selectedBasemapWebmap.delegate = self;
+    }
     
     EAFSuppressClangPerformSelectorLeakWarning([_target performSelector:_action withObject:self]);
-//    [_tableView deselectRow:_tableView.selectedRow];
 }
 
 -(void)webMapDidLoad:(AGSWebMap *)webMap{
+    // cache it so we don't have to reload it every time
+    _itemsToBasemaps[webMap.portalItem.itemId] = webMap;
     
-    AGSMapView *mapView = [EAFAppContext sharedAppContext].mapView;
-    AGSWebMap *currWebMap = [EAFAppContext sharedAppContext].webMap;
-    
-    // first find all reference layers
-    NSMutableSet *refLayers = [NSMutableSet set];
-    for (AGSWebMapLayerInfo *mli in currWebMap.baseMap.baseMapLayers){
-        if (mli.isReference){
-            [refLayers addObject:mli.mapLayer];
-        }
-    }
-    for (AGSWebMapLayerInfo *mli in currWebMap.operationalLayers){
-        if (mli.isReference){
-            [refLayers addObject:mli.mapLayer];
-        }
-    }
-    
-    // cache map state
-    _extraLayers = [NSMutableArray array];
-    for (NSInteger i = [[EAFAppContext sharedAppContext] lastWebMapLayerIndex] + 1; i<mapView.mapLayers.count; i++){
-        AGSLayer *l = [mapView.mapLayers objectAtIndex:i];
-        if ([refLayers containsObject:l]){
-            continue;
-        }
-        [_extraLayers addObject:l];
-    }
-    _center = mapView.visibleAreaEnvelope.center;
-    _res = mapView.resolution;
-    _angle = mapView.rotationAngle;
-
-    
-    currWebMap.zoomToDefaultExtentOnOpen = NO;
-    [currWebMap openIntoMapView:[EAFAppContext sharedAppContext].mapView withAlternateBaseMap:self.selectedBasemapWebmap.baseMap];
-    [mapView enableWrapAround];
-}
-
--(void)webMapOpenedIntoMap:(NSNotification*)note{
-    // TODO: This should really have a check to see if this webmap
-    // is loading from a basemap changing rather than just a webmap loading
-    // that way we don't re-add layers when the original webmap is loading
-
-    if (note.object != [EAFAppContext sharedAppContext].webMap){
+    if (webMap != self.selectedBasemapWebmap){
         return;
     }
-    AGSMapView *mapView = [EAFAppContext sharedAppContext].mapView;
-    for (AGSLayer *l in _extraLayers){
-        [mapView addMapLayer:l];
-    }
-    [mapView zoomToResolution:_res withCenterPoint:_center animated:NO];
-    [mapView setRotationAngle:_angle animated:NO];
     
-    _extraLayers = nil;
+    [self switchToSelectedBasemap];
+}
+
+-(void)switchToSelectedBasemap{
+    [[EAFAppContext sharedAppContext].webMap switchBaseMapOnMapView:self.selectedBasemapWebmap.baseMap];
 }
 
 @end

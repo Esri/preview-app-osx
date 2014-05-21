@@ -15,6 +15,7 @@
  */
 
 #import "EAFLineSegment.h"
+#import "AGSGeometryEngine+EAFAdditions.h"
 
 double const kEAFMeasurementSegmentLengthThreshold = 1000000; // 1000 km
 
@@ -64,8 +65,8 @@ double const kEAFMeasurementSegmentLengthThreshold = 1000000; // 1000 km
         
         _length = len;
         
-        _dmsEnd = [_linearStart degreesMinutesSecondsStringWithNumDigits:2];
-        _dmsStart = [_linearEnd degreesMinutesSecondsStringWithNumDigits:2];
+        _dmsStart = [AGSGeometryEngine eaf_DMSForPoint:_linearStart];
+        _dmsEnd = [AGSGeometryEngine eaf_DMSForPoint:_linearEnd];
     }
     return self;
 }

@@ -469,7 +469,7 @@ didFailToLoadLayer:(AGSWebMapLayerInfo *)layerInfo
 
 #pragma mark mapview touch delegate
 
--(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
+-(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features {
 
     // don't fetch if showing callout for graphics layers
     if (!self.mapView.callout.hidden){
@@ -477,6 +477,11 @@ didFailToLoadLayer:(AGSWebMapLayerInfo *)layerInfo
     }
     
     [_sidePanelVC fetchPopupsForPoint:mappoint];
+}
+
+-(void)mapView:(AGSMapView *)mapView didEndTapAndHoldAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features {
+
+    [self mapView:mapView didClickAtPoint:screen mapPoint:mappoint features:features];
 }
 
 #pragma mark -
